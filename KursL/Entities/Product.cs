@@ -11,11 +11,12 @@
         {
         }
 
-        public Product(string name, int minSales, int maxSales)
+        public Product(string name, int minSales, int maxSales, decimal price)
         {
             Name = name;
             MinSales = minSales;
             MaxSales = maxSales;
+            Price = price;
         }
     }
 }

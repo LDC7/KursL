@@ -35,7 +35,13 @@
             this.textBox_Min = new System.Windows.Forms.TextBox();
             this.textBox_Max = new System.Windows.Forms.TextBox();
             this.textBox_Price = new System.Windows.Forms.TextBox();
-            this.listView_Product = new System.Windows.Forms.ListView();
+            this.button_Accept = new System.Windows.Forms.Button();
+            this.dataGridView_Prod = new System.Windows.Forms.DataGridView();
+            this.NameProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Min_num = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Max_num = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Prod)).BeginInit();
             this.SuspendLayout();
             // 
             // button_Close
@@ -45,7 +51,7 @@
             this.button_Close.Name = "button_Close";
             this.button_Close.Size = new System.Drawing.Size(75, 23);
             this.button_Close.TabIndex = 0;
-            this.button_Close.Text = "Закрыть";
+            this.button_Close.Text = "Отменить";
             this.button_Close.UseVisualStyleBackColor = true;
             this.button_Close.Click += new System.EventHandler(this.button_Close_Click);
             // 
@@ -97,22 +103,71 @@
             this.textBox_Price.Size = new System.Drawing.Size(100, 20);
             this.textBox_Price.TabIndex = 7;
             // 
-            // listView_Product
+            // button_Accept
             // 
-            this.listView_Product.FullRowSelect = true;
-            this.listView_Product.GridLines = true;
-            this.listView_Product.Location = new System.Drawing.Point(13, 13);
-            this.listView_Product.Name = "listView_Product";
-            this.listView_Product.Size = new System.Drawing.Size(440, 239);
-            this.listView_Product.TabIndex = 8;
-            this.listView_Product.UseCompatibleStateImageBehavior = false;
+            this.button_Accept.Location = new System.Drawing.Point(378, 290);
+            this.button_Accept.Name = "button_Accept";
+            this.button_Accept.Size = new System.Drawing.Size(75, 23);
+            this.button_Accept.TabIndex = 9;
+            this.button_Accept.Text = "Принять";
+            this.button_Accept.UseVisualStyleBackColor = true;
+            this.button_Accept.Click += new System.EventHandler(this.button_Accept_Click);
+            // 
+            // dataGridView_Prod
+            // 
+            this.dataGridView_Prod.AllowUserToAddRows = false;
+            this.dataGridView_Prod.AllowUserToDeleteRows = false;
+            this.dataGridView_Prod.AllowUserToResizeColumns = false;
+            this.dataGridView_Prod.AllowUserToResizeRows = false;
+            this.dataGridView_Prod.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_Prod.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.NameProd,
+            this.Min_num,
+            this.Max_num,
+            this.Price});
+            this.dataGridView_Prod.Location = new System.Drawing.Point(12, 12);
+            this.dataGridView_Prod.Name = "dataGridView_Prod";
+            this.dataGridView_Prod.ReadOnly = true;
+            this.dataGridView_Prod.RowHeadersVisible = false;
+            this.dataGridView_Prod.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView_Prod.Size = new System.Drawing.Size(440, 239);
+            this.dataGridView_Prod.TabIndex = 10;
+            // 
+            // NameProd
+            // 
+            this.NameProd.HeaderText = "Название";
+            this.NameProd.Name = "NameProd";
+            this.NameProd.ReadOnly = true;
+            this.NameProd.Width = 203;
+            // 
+            // Min_num
+            // 
+            this.Min_num.HeaderText = "Мин.";
+            this.Min_num.Name = "Min_num";
+            this.Min_num.ReadOnly = true;
+            this.Min_num.Width = 63;
+            // 
+            // Max_num
+            // 
+            this.Max_num.HeaderText = "Макс.";
+            this.Max_num.Name = "Max_num";
+            this.Max_num.ReadOnly = true;
+            this.Max_num.Width = 63;
+            // 
+            // Price
+            // 
+            this.Price.HeaderText = "Цена";
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            this.Price.Width = 103;
             // 
             // ProductionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(542, 325);
-            this.Controls.Add(this.listView_Product);
+            this.Controls.Add(this.dataGridView_Prod);
+            this.Controls.Add(this.button_Accept);
             this.Controls.Add(this.textBox_Price);
             this.Controls.Add(this.textBox_Max);
             this.Controls.Add(this.textBox_Min);
@@ -124,6 +179,7 @@
             this.Name = "ProductionForm";
             this.Text = "Продукция";
             this.Load += new System.EventHandler(this.ProductionForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Prod)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -138,6 +194,11 @@
         private System.Windows.Forms.TextBox textBox_Min;
         private System.Windows.Forms.TextBox textBox_Max;
         private System.Windows.Forms.TextBox textBox_Price;
-        private System.Windows.Forms.ListView listView_Product;
+        private System.Windows.Forms.Button button_Accept;
+        private System.Windows.Forms.DataGridView dataGridView_Prod;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NameProd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Min_num;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Max_num;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
     }
 }

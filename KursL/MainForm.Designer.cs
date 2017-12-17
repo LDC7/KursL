@@ -37,13 +37,16 @@
             this.button_Credits = new System.Windows.Forms.Button();
             this.button_Invest = new System.Windows.Forms.Button();
             this.button_Production = new System.Windows.Forms.Button();
+            this.button_Period = new System.Windows.Forms.Button();
+            this.button_Costs = new System.Windows.Forms.Button();
+            this.button_Analysis = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button_Exit
             // 
             this.button_Exit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_Exit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button_Exit.Location = new System.Drawing.Point(238, 245);
+            this.button_Exit.Location = new System.Drawing.Point(238, 327);
             this.button_Exit.Name = "button_Exit";
             this.button_Exit.Size = new System.Drawing.Size(100, 30);
             this.button_Exit.TabIndex = 0;
@@ -92,14 +95,14 @@
             this.labelCompany.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelCompany.Location = new System.Drawing.Point(12, 74);
             this.labelCompany.Name = "labelCompany";
-            this.labelCompany.Size = new System.Drawing.Size(94, 22);
+            this.labelCompany.Size = new System.Drawing.Size(75, 22);
             this.labelCompany.TabIndex = 4;
-            this.labelCompany.Text = "Компания: ";
+            this.labelCompany.Text = "Проект: ";
             // 
             // button_Employees
             // 
             this.button_Employees.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button_Employees.Location = new System.Drawing.Point(12, 180);
+            this.button_Employees.Location = new System.Drawing.Point(12, 217);
             this.button_Employees.Name = "button_Employees";
             this.button_Employees.Size = new System.Drawing.Size(100, 30);
             this.button_Employees.TabIndex = 5;
@@ -110,7 +113,7 @@
             // button_Credits
             // 
             this.button_Credits.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button_Credits.Location = new System.Drawing.Point(12, 144);
+            this.button_Credits.Location = new System.Drawing.Point(12, 181);
             this.button_Credits.Name = "button_Credits";
             this.button_Credits.Size = new System.Drawing.Size(100, 30);
             this.button_Credits.TabIndex = 6;
@@ -121,7 +124,7 @@
             // button_Invest
             // 
             this.button_Invest.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.button_Invest.Location = new System.Drawing.Point(12, 108);
+            this.button_Invest.Location = new System.Drawing.Point(12, 145);
             this.button_Invest.Name = "button_Invest";
             this.button_Invest.Size = new System.Drawing.Size(100, 30);
             this.button_Invest.TabIndex = 7;
@@ -132,7 +135,7 @@
             // button_Production
             // 
             this.button_Production.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button_Production.Location = new System.Drawing.Point(12, 216);
+            this.button_Production.Location = new System.Drawing.Point(12, 253);
             this.button_Production.Name = "button_Production";
             this.button_Production.Size = new System.Drawing.Size(100, 30);
             this.button_Production.TabIndex = 8;
@@ -140,11 +143,47 @@
             this.button_Production.UseVisualStyleBackColor = true;
             this.button_Production.Click += new System.EventHandler(this.button_Production_Click);
             // 
+            // button_Period
+            // 
+            this.button_Period.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.button_Period.Location = new System.Drawing.Point(12, 109);
+            this.button_Period.Name = "button_Period";
+            this.button_Period.Size = new System.Drawing.Size(100, 30);
+            this.button_Period.TabIndex = 9;
+            this.button_Period.Text = "Период";
+            this.button_Period.UseVisualStyleBackColor = true;
+            this.button_Period.Click += new System.EventHandler(this.button_Period_Click);
+            // 
+            // button_Costs
+            // 
+            this.button_Costs.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button_Costs.Location = new System.Drawing.Point(12, 289);
+            this.button_Costs.Name = "button_Costs";
+            this.button_Costs.Size = new System.Drawing.Size(100, 30);
+            this.button_Costs.TabIndex = 10;
+            this.button_Costs.Text = "Издержки";
+            this.button_Costs.UseVisualStyleBackColor = true;
+            this.button_Costs.Click += new System.EventHandler(this.button_Costs_Click);
+            // 
+            // button_Analysis
+            // 
+            this.button_Analysis.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.button_Analysis.Location = new System.Drawing.Point(224, 109);
+            this.button_Analysis.Name = "button_Analysis";
+            this.button_Analysis.Size = new System.Drawing.Size(100, 30);
+            this.button_Analysis.TabIndex = 11;
+            this.button_Analysis.Text = "Анализ";
+            this.button_Analysis.UseVisualStyleBackColor = true;
+            this.button_Analysis.Click += new System.EventHandler(this.button_Analysis_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(350, 287);
+            this.ClientSize = new System.Drawing.Size(350, 369);
+            this.Controls.Add(this.button_Analysis);
+            this.Controls.Add(this.button_Costs);
+            this.Controls.Add(this.button_Period);
             this.Controls.Add(this.button_Production);
             this.Controls.Add(this.button_Invest);
             this.Controls.Add(this.button_Credits);
@@ -173,6 +212,9 @@
         private System.Windows.Forms.Button button_Credits;
         private System.Windows.Forms.Button button_Invest;
         private System.Windows.Forms.Button button_Production;
+        private System.Windows.Forms.Button button_Period;
+        private System.Windows.Forms.Button button_Costs;
+        private System.Windows.Forms.Button button_Analysis;
     }
 }
 

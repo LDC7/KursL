@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Windows.Forms;
 
 namespace KursL
@@ -21,17 +22,25 @@ namespace KursL
         {
             if(!string.IsNullOrWhiteSpace(textBox_Invest.Text))
             {
-                if(decimal.TryParse(textBox_Invest.Text, out buffer))
+                var sb = new StringBuilder(textBox_Invest.Text);
+                int i = textBox_Invest.Text.IndexOf('.');
+                if (i >= 0)
                 {
-                    buffer = buffer / (decimal)0.01;
-                    ((MainForm)this.Owner).selectedCompany.StartCapital = buffer;
+                    sb[i] = ',';
                 }
+                if (decimal.TryParse(sb.ToString(), out buffer))
+                {
+                    buffer = buffer - (buffer % 0.01m);
+                    ((MainForm)this.Owner).selectedProject.Investments = buffer;
+                }
+
+                Close();
             }
         }
 
         private void InvestForm_Load(object sender, EventArgs e)
         {
-            buffer = ((MainForm)this.Owner).selectedCompany.StartCapital;
+            buffer = ((MainForm)this.Owner).selectedProject.Investments;
             textBox_Invest.Text = buffer.ToString();
         }
     }

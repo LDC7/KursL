@@ -6,12 +6,11 @@ namespace KursL
 {
     public partial class MainForm : Form
     {
-        public Company selectedCompany;
+        public Project selectedProject;
 
         public MainForm()
         {
             InitializeComponent();
-            selectedCompany = new Company();
         }
 
         private void button_Exit_Click(object sender, EventArgs e)
@@ -21,7 +20,7 @@ namespace KursL
 
         private void button_NewCompany_Click(object sender, EventArgs e)
         {
-            CreateCompanyForm createCompany = new CreateCompanyForm();
+            CreateProjectForm createCompany = new CreateProjectForm();
             createCompany.Owner = this;
             createCompany.Show();
 
@@ -38,7 +37,7 @@ namespace KursL
             {
                 using (StreamReader reader = new StreamReader(openFileDialog.FileName))
                 {
-                    selectedCompany = XmlSer.Deserialize<Company>(reader);
+                    selectedProject = XmlSer.Deserialize<Project>(reader);
                 }
 
                 reloadCompanyName();
@@ -47,7 +46,7 @@ namespace KursL
 
         private void button_Save_Click(object sender, EventArgs e)
         {
-            if (selectedCompany != null)
+            if (selectedProject != null)
             {
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.Filter = "Company files|*.xmlcom";
@@ -57,7 +56,7 @@ namespace KursL
                 {
                     using (StreamWriter writer = new StreamWriter(saveFileDialog.FileName))
                     {
-                        writer.Write(XmlSer.Serialize(selectedCompany));
+                        writer.Write(XmlSer.Serialize(selectedProject));
                     }
                 }
             }
@@ -65,35 +64,81 @@ namespace KursL
 
         public void reloadCompanyName()
         {
-            labelCompany.Text = "Компания: ";
-            if (selectedCompany != null)
+            labelCompany.Text = "Проект: ";
+            if (selectedProject != null)
             {
-                labelCompany.Text += selectedCompany.Name;
+                labelCompany.Text += selectedProject.Name;
             }
         }
 
         private void button_Invest_Click(object sender, EventArgs e)
         {
-            InvestForm invest = new InvestForm();
-            invest.Owner = this;
-            invest.Show();
+            if (selectedProject != null)
+            {
+                InvestForm invest = new InvestForm();
+                invest.Owner = this;
+                invest.Show();
+            }
         }
 
         private void button_Credits_Click(object sender, EventArgs e)
         {
-
+            if (selectedProject != null)
+            {
+                CreditForm credit = new CreditForm();
+                credit.Owner = this;
+                credit.Show();
+            }
         }
 
         private void button_Employees_Click(object sender, EventArgs e)
         {
-
+            if (selectedProject != null)
+            {
+                EmployeeForm employees = new EmployeeForm();
+                employees.Owner = this;
+                employees.Show();
+            }
         }
 
         private void button_Production_Click(object sender, EventArgs e)
         {
-            ProductionForm products = new ProductionForm();
-            products.Owner = this;
-            products.Show();
+            if (selectedProject != null)
+            {
+                ProductionForm products = new ProductionForm();
+                products.Owner = this;
+                products.Show();
+            }
+        }
+
+        private void button_Period_Click(object sender, EventArgs e)
+        {
+            if (selectedProject != null)
+            {
+                PeriodForm period = new PeriodForm();
+                period.Owner = this;
+                period.Show();
+            }
+        }
+
+        private void button_Costs_Click(object sender, EventArgs e)
+        {
+            if (selectedProject != null)
+            {
+                CostsForm costs = new CostsForm();
+                costs.Owner = this;
+                costs.Show();
+            }
+        }
+
+        private void button_Analysis_Click(object sender, EventArgs e)
+        {
+            if (selectedProject != null)
+            {
+                AnalysisForm analysis = new AnalysisForm();
+                analysis.Owner = this;
+                analysis.Show();
+            }
         }
     }
 }
