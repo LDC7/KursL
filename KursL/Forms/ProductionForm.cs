@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 
 namespace KursL
@@ -38,7 +37,6 @@ namespace KursL
             int min;
             int max;
             decimal price;
-            StringBuilder sb;
 
             if (!string.IsNullOrWhiteSpace(textBox_Name.Text))
             {
@@ -46,15 +44,9 @@ namespace KursL
                 {
                     if (int.TryParse(textBox_Max.Text, out max))
                     {
-                        sb = new StringBuilder(textBox_Price.Text);
-                        int i = textBox_Price.Text.IndexOf('.');
-                        if (i >= 0)
+                        if (decimal.TryParse(textBox_Price.Text.Replace(',', '.'), out price))
                         {
-                            sb[i] = ',';
-                        }
-                        if (decimal.TryParse(sb.ToString(), out price))
-                        {
-                            price = price - (price % 0.01m);
+                            price = Math.Round(price, 2);
                             dataGridView_Prod.Rows.Add(textBox_Name.Text, min, max, price);
                         }
                     }

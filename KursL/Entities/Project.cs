@@ -71,12 +71,9 @@ namespace KursL
         {
             decimal pay = 0.00m;
 
-            foreach(var c in Credits)
+            foreach (var c in Credits)
             {
-                if (date.CompareTo(c.TakeDate) >= 0 && date.CompareTo(c.RepayDate) <= 0)
-                {
-                    pay += c.MonthlyPayment;
-                }
+                pay += c.MonthlyPayment(date);
             }
 
             return pay;
@@ -99,17 +96,17 @@ namespace KursL
 
         public decimal Loan(DateTime date)
         {
-            decimal pay = 0.00m;
+            decimal loan = 0.00m;
 
             foreach (var c in Credits)
             {
                 if (date.CompareTo(c.TakeDate) >= 0 && date.CompareTo(c.RepayDate) <= 0)
                 {
-                    pay += c.MonthlyPayment;
+                    loan += c.Loan;
                 }
             }
 
-            return pay;
+            return loan;
         }
     }
 }

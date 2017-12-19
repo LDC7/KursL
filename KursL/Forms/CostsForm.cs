@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 
 namespace KursL
@@ -40,7 +39,6 @@ namespace KursL
             DateTime endDate;
             string end = ".";
             decimal cost;
-            StringBuilder sb;
 
             if (!string.IsNullOrWhiteSpace(textBox_Name.Text))
             {
@@ -70,15 +68,9 @@ namespace KursL
 
                 if (start != "." && end != ".")
                 {
-                    sb = new StringBuilder(textBox_Monthly.Text);
-                    int i = textBox_End.Text.IndexOf('.');
-                    if (i >= 0)
+                    if (decimal.TryParse(textBox_End.Text.Replace(',', '.'), out cost))
                     {
-                        sb[i] = ',';
-                    }
-                    if (decimal.TryParse(sb.ToString(), out cost))
-                    {
-                        cost = cost - (cost % 0.01m);
+                        cost = Math.Round(cost, 2);
                         dataGridView_Cost.Rows.Add(textBox_Name.Text, start, end, cost);
                     }
                 }                

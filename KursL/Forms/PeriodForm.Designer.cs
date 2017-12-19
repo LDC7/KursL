@@ -93,6 +93,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "PeriodForm";
             this.Text = "Создать Компанию";
+            this.Load += new System.EventHandler(this.PeriodForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

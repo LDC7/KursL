@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text;
 using System.Windows.Forms;
 
 namespace KursL
@@ -22,15 +21,9 @@ namespace KursL
         {
             if(!string.IsNullOrWhiteSpace(textBox_Invest.Text))
             {
-                var sb = new StringBuilder(textBox_Invest.Text);
-                int i = textBox_Invest.Text.IndexOf('.');
-                if (i >= 0)
+                if (decimal.TryParse(textBox_Invest.Text.Replace(',', '.'), out buffer))
                 {
-                    sb[i] = ',';
-                }
-                if (decimal.TryParse(sb.ToString(), out buffer))
-                {
-                    buffer = buffer - (buffer % 0.01m);
+                    buffer = Math.Round(buffer, 2);
                     ((MainForm)this.Owner).selectedProject.Investments = buffer;
                 }
 

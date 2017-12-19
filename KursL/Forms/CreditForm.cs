@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 
 namespace KursL
@@ -16,7 +15,7 @@ namespace KursL
         {
             foreach (var c in ((MainForm)this.Owner).selectedProject.Credits)
             {
-                dataGridView_Prod.Rows.Add(c.TakeDate, c.RepayDate, c.Percent, c.Loan);
+                dataGridView_Prod.Rows.Add(c.TakeDate.ToString("dd.MM.yyyy"), c.RepayDate.ToString("dd.MM.yyyy"), c.Percent, c.Loan);
             }
         }
 
@@ -39,7 +38,6 @@ namespace KursL
             DateTime endDate;
             decimal percent;
             decimal loan;
-            StringBuilder sb;
 
             if (DateTime.TryParse(textBox_Start.Text, out startDate))
             {
@@ -47,25 +45,13 @@ namespace KursL
                 {
                     if (startDate.CompareTo(endDate) < 0)
                     {
-                        sb = new StringBuilder(textBox_Percent.Text);
-                        int i = textBox_Percent.Text.IndexOf('.');
-                        if (i >= 0)
+                        if (decimal.TryParse(textBox_Percent.Text.Replace(',', '.'), out percent))
                         {
-                            sb[i] = ',';
-                        }
-                        if (decimal.TryParse(sb.ToString(), out percent))
-                        {
-                            sb = new StringBuilder(textBox_Loan.Text);
-                            i = textBox_Loan.Text.IndexOf('.');
-                            if (i >= 0)
+                            if (decimal.TryParse(textBox_Loan.Text.Replace(',', '.'), out loan))
                             {
-                                sb[i] = ',';
-                            }
-                            if (decimal.TryParse(sb.ToString(), out loan))
-                            {
-                                percent = percent - (percent % 0.1m);
-                                loan = loan - (loan % 0.01m);
-                                dataGridView_Prod.Rows.Add(startDate.Date, endDate.Date, percent, loan);
+                                percent = Math.Round(percent, 1);
+                                loan = Math.Round(loan, 2);
+                                dataGridView_Prod.Rows.Add(startDate.ToString("dd.MM.yyyy"), endDate.ToString("dd.MM.yyyy"), percent, loan);
                             }
                         }
                     }
@@ -79,7 +65,7 @@ namespace KursL
 
             foreach (DataGridViewRow c in dataGridView_Prod.Rows)
             {
-                list.Add(new Credit((DateTime)c.Cells[0].Value, (DateTime)c.Cells[1].Value, (decimal)c.Cells[2].Value, (decimal)c.Cells[3].Value));
+                list.Add(new Credit(DateTime.Parse((string)c.Cells[0].Value), DateTime.Parse((string)c.Cells[1].Value), (decimal)c.Cells[2].Value, (decimal)c.Cells[3].Value));
             }
 
             ((MainForm)this.Owner).selectedProject.Credits = list;

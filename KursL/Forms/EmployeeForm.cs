@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 
 namespace KursL
@@ -37,21 +36,14 @@ namespace KursL
         {
             int num;
             decimal salary;
-            StringBuilder sb;
 
             if (!string.IsNullOrWhiteSpace(textBox_Name.Text))
             {
                 if (int.TryParse(textBox_Num.Text, out num))
                 {
-                    sb = new StringBuilder(textBox_Salary.Text);
-                    int i = textBox_Salary.Text.IndexOf('.');
-                    if (i >= 0)
+                    if (decimal.TryParse(textBox_Salary.Text.Replace(',', '.'), out salary))
                     {
-                        sb[i] = ',';
-                    }
-                    if (decimal.TryParse(sb.ToString(), out salary))
-                    {
-                        salary = salary - (salary % 0.01m);
+                        salary = Math.Round(salary, 2);
                         dataGridView_Emp.Rows.Add(textBox_Name.Text, num, salary);
                     }
                 }

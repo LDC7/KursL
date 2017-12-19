@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>TempTest</Name>
+  <Investments>500000.00</Investments>
+  <Credits>
+    <Credit>
+      <TakeDate>2017-12-01T00:00:00</TakeDate>
+      <RepayDate>2018-04-01T00:00:00</RepayDate>
+      <Loan>15000</Loan>
+      <Percent>5</Percent>
+    </Credit>
+    <Credit>
+      <TakeDate>2018-01-05T00:00:00</TakeDate>
+      <RepayDate>2018-08-01T00:00:00</RepayDate>
+      <Loan>50000</Loan>
+      <Percent>10</Percent>
+    </Credit>
+  </Credits>
+  <Employees>
+    <Employee>
+      <Name>Сотрудник 1</Name>
+      <Num>1</Num>
+      <Salary>5000.00</Salary>
+    </Employee>
+    <Employee>
+      <Name>Сотрудник 2</Name>
+      <Num>3</Num>
+      <Salary>8000.56</Salary>
+    </Employee>
+  </Employees>
+  <Products>
+    <Product>
+      <Name>Продукция 1</Name>
+      <MinSales>0</MinSales>
+      <MaxSales>10</MaxSales>
+      <Price>20000</Price>
+    </Product>
+    <Product>
+      <Name>Продукция 2</Name>
+      <MinSales>5</MinSales>
+      <MaxSales>8</MaxSales>
+      <Price>9000</Price>
+    </Product>
+  </Products>
+  <Costs />
+  <PeriodStart>2017-12-01T00:00:00</PeriodStart>
+  <PeriodEnd>2019-05-06T00:00:00</PeriodEnd>
+</Project>

@@ -36,5 +36,11 @@ namespace KursL
             }
 
         }
+
+        private void PeriodForm_Load(object sender, EventArgs e)
+        {
+            textBox_PeriodStart.Text = ((MainForm)this.Owner).selectedProject.PeriodStart.ToString("dd.MM.yyyy");
+            textBox_PeriodEnd.Text = ((MainForm)this.Owner).selectedProject.PeriodEnd.ToString("dd.MM.yyyy");
+        }
     }
 }
