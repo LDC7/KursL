@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
 
 namespace KursL
@@ -22,18 +23,17 @@ namespace KursL
         {
             project = ((MainForm)this.Owner).selectedProject;
             CreateGrid();
+            SetGrid();            
         }
 
         private void CreateGrid()
         {
-            //Отчистка
-
             //Колонки
             DateTime now = new DateTime(project.PeriodStart.Year, project.PeriodStart.Month, 1);
             for (int i = 0; i <= ((project.PeriodEnd.Year - project.PeriodStart.Year) * 12 + project.PeriodEnd.Month - project.PeriodStart.Month); i++)
             {
                 dataGridView_Analys.Columns.Add($"period{i}", now.ToString("dd.MM.yyyy"));
-                now = now.AddMonths(i);
+                now = now.AddMonths(1);
             }
 
             //Ряды
@@ -47,13 +47,19 @@ namespace KursL
             dataGridView_Analys.Rows[6].HeaderCell.Value = "Выплаты по кредиту";
             dataGridView_Analys.Rows[7].HeaderCell.Value = "NPV";
             dataGridView_Analys.Rows[8].HeaderCell.Value = "Конец периода";
+        }
 
+        private void SetGrid()
+        {
             //Заполнение
-            now = new DateTime(project.PeriodStart.Year, project.PeriodStart.Month, 1);
+            DateTime now = new DateTime(project.PeriodStart.Year, project.PeriodStart.Month, 1);
+            label_period.Text = string.Empty;
             decimal startCapital = 0.00m;
             decimal endCapital;
             decimal temp;
             decimal npv;
+            decimal recoup = 0.00m;
+
             for (int i = 0; i <= ((project.PeriodEnd.Year - project.PeriodStart.Year) * 12 + project.PeriodEnd.Month - project.PeriodStart.Month); i++)
             {
                 endCapital = 0.00m;
@@ -65,22 +71,25 @@ namespace KursL
                 //Начало периода
                 dataGridView_Analys.Rows[0].Cells[i].Value = startCapital;
                 endCapital += startCapital;
-                temp = project.Loan(now);
 
                 //Займы
+                temp = project.Loan(now);
                 if (temp > 0)
                 {
                     dataGridView_Analys.Rows[2].Cells[i].Value = temp;
                     endCapital += temp;
+                    recoup -= project.reloan(now);
                 }
 
                 //Зарплата
                 temp = project.Salaries();
                 dataGridView_Analys.Rows[3].Cells[i].Value = temp;
                 endCapital -= temp;
-                temp = project.Sales();
+                npv -= temp;
 
                 //Продажи
+                temp = checkBox_Sales.Checked ? project.Sales() : project.Sales(trackBar_Sales.Value);
+                temp += Math.Round(temp * trackBar_Prices.Value / 100m, 2);
                 dataGridView_Analys.Rows[4].Cells[i].Value = temp;
                 endCapital += temp;
                 npv += temp;
@@ -93,6 +102,7 @@ namespace KursL
                     endCapital -= temp;
                     npv -= temp;
                 }
+                recoup += npv;
 
                 //Выплаты по кредиту
                 temp = project.LoanPayments(now);
@@ -100,6 +110,14 @@ namespace KursL
                 {
                     dataGridView_Analys.Rows[6].Cells[i].Value = temp;
                     endCapital -= temp;
+                    npv -= temp;
+                    recoup += temp;
+                }
+
+                //Окупаемость
+                if (label_period.Text == string.Empty && recoup >= project.Investments)
+                {
+                    label_period.Text = $"Период окупаемости: {i} мес.";
                 }
 
                 //NPV
@@ -109,11 +127,16 @@ namespace KursL
                 dataGridView_Analys.Rows[8].Cells[i].Value = endCapital;
 
                 startCapital = endCapital;
-                now = now.AddMonths(i);
+                now = now.AddMonths(1);
             }
 
             //Инвестиции
             dataGridView_Analys.Rows[1].Cells[0].Value = project.Investments;
+
+            if (label_period.Text == string.Empty)
+            {
+                label_period.Text = $"Период окупаемости: неизв.";
+            }
         }
 
         private void button_csv_Click(object sender, EventArgs e)
@@ -122,9 +145,10 @@ namespace KursL
             saveFileDialog.Filter = "csv|*.csv";
             saveFileDialog.Title = "Save csv";
 
+
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                using (StreamWriter writer = new StreamWriter(saveFileDialog.FileName))
+                using (StreamWriter writer = new StreamWriter(saveFileDialog.FileName, false, Encoding.UTF8))
                 {
                     writer.Write($"{dataGridView_Analys.TopLeftHeaderCell.Value ?? string.Empty};");
                     foreach (DataGridViewColumn h in dataGridView_Analys.Columns)
@@ -151,23 +175,29 @@ namespace KursL
             if (checkBox_Sales.Checked)
             {
                 trackBar_Sales.Enabled = false;
-                CreateGrid();
+                trackBar_Prices.Enabled = false;
+                label_Sales.Text = "Объём продаж: ";
+                SetGrid();
             }
             else
             {
                 trackBar_Sales.Enabled = true;
-                CreateGrid();
+                trackBar_Prices.Enabled = true;
+                label_Sales.Text = $"Объём продаж: {trackBar_Sales.Value}";
+                SetGrid();
             }
         }
 
         private void trackBar_Sales_Scroll(object sender, EventArgs e)
         {
-            CreateGrid();
+            label_Sales.Text = $"Объём продаж: {trackBar_Sales.Value}";
+            SetGrid();
         }
 
-        private void trackBar1_Scroll(object sender, EventArgs e)
+        private void trackBar_Prices_Scroll(object sender, EventArgs e)
         {
-            CreateGrid();
+            label_Prices.Text = $"Цены: {trackBar_Prices.Value}%";
+            SetGrid();
         }
     }
 }

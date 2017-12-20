@@ -46,7 +46,7 @@ namespace KursL
 
             foreach (var i in Products)
             {
-                sales += (i.Price * (((i.MaxSales - i.MinSales) * (volume / 100m)) + i.MinSales));
+                sales += (i.Price * Math.Round(((i.MaxSales - i.MinSales) * (volume / 100m)) + i.MinSales));
             }
 
             return sales;
@@ -100,9 +100,24 @@ namespace KursL
 
             foreach (var c in Credits)
             {
-                if (date.CompareTo(c.TakeDate) >= 0 && date.CompareTo(c.RepayDate) <= 0)
+                if (date.Month == c.TakeDate.Month && date.Year == c.TakeDate.Year)
                 {
                     loan += c.Loan;
+                }
+            }
+
+            return loan;
+        }
+
+        public decimal reloan(DateTime date)
+        {
+            decimal loan = 0.00m;
+
+            foreach (var c in Credits)
+            {
+                if (date.Month == c.TakeDate.Month && date.Year == c.TakeDate.Year)
+                {
+                    loan += c.Loan * ((100m + c.Percent) / 100m);
                 }
             }
 

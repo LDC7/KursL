@@ -41,7 +41,7 @@ namespace KursL
             {
                 if (int.TryParse(textBox_Num.Text, out num))
                 {
-                    if (decimal.TryParse(textBox_Salary.Text.Replace(',', '.'), out salary))
+                    if (decimal.TryParse(textBox_Salary.Text.Replace('.', ','), out salary))
                     {
                         salary = Math.Round(salary, 2);
                         dataGridView_Emp.Rows.Add(textBox_Name.Text, num, salary);

@@ -8,8 +8,8 @@ namespace KursL
         public DateTime RepayDate;
         public decimal Loan;
         public decimal Percent;
-        private decimal monthly;
-        private int months;
+        public decimal monthly;
+        public int months;
 
         public Credit()
         {
@@ -22,20 +22,20 @@ namespace KursL
             Loan = loan;
             Percent = percent;
             months = ((RepayDate.Year - TakeDate.Year) * 12 + RepayDate.Month - TakeDate.Month);
-            monthly = Math.Round(Loan * (100 + Percent) / months, 2);
+            monthly = Math.Round(((Loan * ((100m + Percent) / 100)) / months), 2);
         }
 
         public decimal MonthlyPayment(DateTime date)
         {
-            if (date.CompareTo(TakeDate) >= 0 && date.CompareTo(RepayDate) <= 0)
+            if (date.CompareTo(TakeDate) > 0 && date.CompareTo(RepayDate) <= 0)
             {
-                if (date.Month != RepayDate.Month && date.Day != RepayDate.Day)
+                if (date.Month != RepayDate.Month || date.Year != RepayDate.Year)
                 {
                     return monthly;
                 }
                 else
                 {
-                    return Loan * (100 + Percent) - ((months - 1) * monthly);
+                    return (Loan * ((100 + Percent) / 100)) - ((months - 1) * monthly);
                 }
             }
 

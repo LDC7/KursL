@@ -44,7 +44,7 @@ namespace KursL
                 {
                     if (int.TryParse(textBox_Max.Text, out max))
                     {
-                        if (decimal.TryParse(textBox_Price.Text.Replace(',', '.'), out price))
+                        if (decimal.TryParse(textBox_Price.Text.Replace('.', ','), out price))
                         {
                             price = Math.Round(price, 2);
                             dataGridView_Prod.Rows.Add(textBox_Name.Text, min, max, price);

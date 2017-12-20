@@ -35,16 +35,17 @@
             this.label_Sales = new System.Windows.Forms.Label();
             this.trackBar_Sales = new System.Windows.Forms.TrackBar();
             this.label_Prices = new System.Windows.Forms.Label();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.trackBar_Prices = new System.Windows.Forms.TrackBar();
+            this.label_period = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Analys)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_Sales)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_Prices)).BeginInit();
             this.SuspendLayout();
             // 
             // button_Close
             // 
             this.button_Close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_Close.Location = new System.Drawing.Point(957, 528);
+            this.button_Close.Location = new System.Drawing.Point(788, 316);
             this.button_Close.Name = "button_Close";
             this.button_Close.Size = new System.Drawing.Size(75, 23);
             this.button_Close.TabIndex = 0;
@@ -59,12 +60,13 @@
             this.dataGridView_Analys.Name = "dataGridView_Analys";
             this.dataGridView_Analys.ReadOnly = true;
             this.dataGridView_Analys.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            this.dataGridView_Analys.Size = new System.Drawing.Size(724, 335);
+            this.dataGridView_Analys.Size = new System.Drawing.Size(850, 239);
             this.dataGridView_Analys.TabIndex = 1;
             // 
             // button_csv
             // 
-            this.button_csv.Location = new System.Drawing.Point(876, 528);
+            this.button_csv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_csv.Location = new System.Drawing.Point(707, 316);
             this.button_csv.Name = "button_csv";
             this.button_csv.Size = new System.Drawing.Size(75, 23);
             this.button_csv.TabIndex = 2;
@@ -77,7 +79,7 @@
             this.checkBox_Sales.AutoSize = true;
             this.checkBox_Sales.Checked = true;
             this.checkBox_Sales.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_Sales.Location = new System.Drawing.Point(12, 366);
+            this.checkBox_Sales.Location = new System.Drawing.Point(12, 281);
             this.checkBox_Sales.Name = "checkBox_Sales";
             this.checkBox_Sales.Size = new System.Drawing.Size(81, 17);
             this.checkBox_Sales.TabIndex = 3;
@@ -88,7 +90,7 @@
             // label_Sales
             // 
             this.label_Sales.AutoSize = true;
-            this.label_Sales.Location = new System.Drawing.Point(12, 350);
+            this.label_Sales.Location = new System.Drawing.Point(12, 265);
             this.label_Sales.Name = "label_Sales";
             this.label_Sales.Size = new System.Drawing.Size(86, 13);
             this.label_Sales.TabIndex = 4;
@@ -97,7 +99,7 @@
             // trackBar_Sales
             // 
             this.trackBar_Sales.Enabled = false;
-            this.trackBar_Sales.Location = new System.Drawing.Point(12, 389);
+            this.trackBar_Sales.Location = new System.Drawing.Point(12, 304);
             this.trackBar_Sales.Maximum = 100;
             this.trackBar_Sales.Name = "trackBar_Sales";
             this.trackBar_Sales.Size = new System.Drawing.Size(300, 45);
@@ -107,28 +109,38 @@
             // label_Prices
             // 
             this.label_Prices.AutoSize = true;
-            this.label_Prices.Location = new System.Drawing.Point(325, 350);
+            this.label_Prices.Location = new System.Drawing.Point(325, 282);
             this.label_Prices.Name = "label_Prices";
-            this.label_Prices.Size = new System.Drawing.Size(38, 13);
+            this.label_Prices.Size = new System.Drawing.Size(55, 13);
             this.label_Prices.TabIndex = 6;
-            this.label_Prices.Text = "Цены:";
+            this.label_Prices.Text = "Цены: 0%";
             // 
-            // trackBar1
+            // trackBar_Prices
             // 
-            this.trackBar1.Location = new System.Drawing.Point(328, 389);
-            this.trackBar1.Maximum = 50;
-            this.trackBar1.Minimum = -50;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(300, 45);
-            this.trackBar1.TabIndex = 7;
-            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            this.trackBar_Prices.Enabled = false;
+            this.trackBar_Prices.Location = new System.Drawing.Point(328, 304);
+            this.trackBar_Prices.Maximum = 50;
+            this.trackBar_Prices.Minimum = -50;
+            this.trackBar_Prices.Name = "trackBar_Prices";
+            this.trackBar_Prices.Size = new System.Drawing.Size(300, 45);
+            this.trackBar_Prices.TabIndex = 7;
+            this.trackBar_Prices.Scroll += new System.EventHandler(this.trackBar_Prices_Scroll);
+            // 
+            // label_period
+            // 
+            this.label_period.AutoSize = true;
+            this.label_period.Location = new System.Drawing.Point(631, 265);
+            this.label_period.Name = "label_period";
+            this.label_period.Size = new System.Drawing.Size(0, 13);
+            this.label_period.TabIndex = 8;
             // 
             // AnalysisForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1044, 563);
-            this.Controls.Add(this.trackBar1);
+            this.ClientSize = new System.Drawing.Size(875, 351);
+            this.Controls.Add(this.label_period);
+            this.Controls.Add(this.trackBar_Prices);
             this.Controls.Add(this.label_Prices);
             this.Controls.Add(this.trackBar_Sales);
             this.Controls.Add(this.label_Sales);
@@ -142,7 +154,7 @@
             this.Load += new System.EventHandler(this.AnalysisForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Analys)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_Sales)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_Prices)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -157,6 +169,7 @@
         private System.Windows.Forms.Label label_Sales;
         private System.Windows.Forms.TrackBar trackBar_Sales;
         private System.Windows.Forms.Label label_Prices;
-        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.TrackBar trackBar_Prices;
+        private System.Windows.Forms.Label label_period;
     }
 }

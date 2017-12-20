@@ -13,9 +13,14 @@ namespace KursL
 
         private void CostsForm_Load(object sender, EventArgs e)
         {
+            string buf1, buf2;
+
             foreach(var c in ((MainForm)this.Owner).selectedProject.Costs)
             {
-                dataGridView_Cost.Rows.Add(c.Name, c.Start, c.End, c.MonthlyCost);
+                buf1 = c.Start == null ? string.Empty : ((DateTime)c.Start).ToString("dd.MM.yyyy");
+                buf2 = c.End == null ? string.Empty : ((DateTime)c.End).ToString("dd.MM.yyyy");
+
+                dataGridView_Cost.Rows.Add(c.Name, buf1, buf2, c.MonthlyCost);
             }
         }
 
@@ -68,7 +73,7 @@ namespace KursL
 
                 if (start != "." && end != ".")
                 {
-                    if (decimal.TryParse(textBox_End.Text.Replace(',', '.'), out cost))
+                    if (decimal.TryParse(textBox_Monthly.Text.Replace('.', ','), out cost))
                     {
                         cost = Math.Round(cost, 2);
                         dataGridView_Cost.Rows.Add(textBox_Name.Text, start, end, cost);
@@ -84,8 +89,8 @@ namespace KursL
 
             foreach (DataGridViewRow c in dataGridView_Cost.Rows)
             {
-                buf1 = string.IsNullOrEmpty(c.Cells[1].Value.ToString()) ? null : (DateTime?)DateTime.Parse(c.Cells[1].Value.ToString());
-                buf2 = string.IsNullOrEmpty(c.Cells[2].Value.ToString()) ? null : (DateTime?)DateTime.Parse(c.Cells[2].Value.ToString());
+                buf1 = ((string)c.Cells[1].Value ?? string.Empty) == string.Empty ? null : (DateTime?)DateTime.Parse((string)c.Cells[1].Value);
+                buf2 = ((string)c.Cells[2].Value ?? string.Empty) == string.Empty ? null : (DateTime?)DateTime.Parse((string)c.Cells[2].Value);
                 list.Add(new Cost(c.Cells[0].Value.ToString(), buf1, buf2, (decimal)c.Cells[3].Value));
             }
 

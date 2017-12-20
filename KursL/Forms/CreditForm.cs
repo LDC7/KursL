@@ -45,9 +45,9 @@ namespace KursL
                 {
                     if (startDate.CompareTo(endDate) < 0)
                     {
-                        if (decimal.TryParse(textBox_Percent.Text.Replace(',', '.'), out percent))
+                        if (decimal.TryParse(textBox_Percent.Text.Replace('.', ','), out percent))
                         {
-                            if (decimal.TryParse(textBox_Loan.Text.Replace(',', '.'), out loan))
+                            if (decimal.TryParse(textBox_Loan.Text.Replace('.', ','), out loan))
                             {
                                 percent = Math.Round(percent, 1);
                                 loan = Math.Round(loan, 2);

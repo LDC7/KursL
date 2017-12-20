@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>BrainPower</Name>
+  <Investments>200000</Investments>
+  <Credits>
+    <Credit>
+      <TakeDate>2017-12-01T00:00:00</TakeDate>
+      <RepayDate>2018-12-01T00:00:00</RepayDate>
+      <Loan>320000</Loan>
+      <Percent>5</Percent>
+      <monthly>28000.00</monthly>
+      <months>12</months>
+    </Credit>
+  </Credits>
+  <Employees>
+    <Employee>
+      <Name>Программисты</Name>
+      <Num>5</Num>
+      <Salary>30000</Salary>
+    </Employee>
+    <Employee>
+      <Name>Директор</Name>
+      <Num>1</Num>
+      <Salary>50000</Salary>
+    </Employee>
+    <Employee>
+      <Name>Бухгалтер</Name>
+      <Num>1</Num>
+      <Salary>40000</Salary>
+    </Employee>
+    <Employee>
+      <Name>Секретарь</Name>
+      <Num>2</Num>
+      <Salary>25000</Salary>
+    </Employee>
+  </Employees>
+  <Products>
+    <Product>
+      <Name>Антивирус</Name>
+      <MinSales>20</MinSales>
+      <MaxSales>40</MaxSales>
+      <Price>1500</Price>
+    </Product>
+    <Product>
+      <Name>Графический редактор</Name>
+      <MinSales>10</MinSales>
+      <MaxSales>25</MaxSales>
+      <Price>2000</Price>
+    </Product>
+    <Product>
+      <Name>Программы бух. учёта</Name>
+      <MinSales>0</MinSales>
+      <MaxSales>10</MaxSales>
+      <Price>50000</Price>
+    </Product>
+    <Product>
+      <Name>ОС</Name>
+      <MinSales>1</MinSales>
+      <MaxSales>20</MaxSales>
+      <Price>10000</Price>
+    </Product>
+  </Products>
+  <Costs>
+    <Cost>
+      <Name>Электроэнергия</Name>
+      <Start xsi:nil="true" />
+      <End xsi:nil="true" />
+      <MonthlyCost>20000</MonthlyCost>
+    </Cost>
+    <Cost>
+      <Name>Аренда</Name>
+      <Start xsi:nil="true" />
+      <End xsi:nil="true" />
+      <MonthlyCost>30000</MonthlyCost>
+    </Cost>
+    <Cost>
+      <Name>Закупка доп. оборудования</Name>
+      <Start>2018-12-01T00:00:00</Start>
+      <End>2018-12-31T00:00:00</End>
+      <MonthlyCost>50000</MonthlyCost>
+    </Cost>
+  </Costs>
+  <PeriodStart>2017-12-01T00:00:00</PeriodStart>
+  <PeriodEnd>2019-12-31T00:00:00</PeriodEnd>
+</Project>

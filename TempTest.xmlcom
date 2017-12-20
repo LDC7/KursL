@@ -6,14 +6,18 @@
     <Credit>
       <TakeDate>2017-12-01T00:00:00</TakeDate>
       <RepayDate>2018-04-01T00:00:00</RepayDate>
-      <Loan>15000</Loan>
-      <Percent>5</Percent>
+      <Loan>10000</Loan>
+      <Percent>10</Percent>
+      <monthly>2750.0</monthly>
+      <months>4</months>
     </Credit>
     <Credit>
-      <TakeDate>2018-01-05T00:00:00</TakeDate>
+      <TakeDate>2018-03-01T00:00:00</TakeDate>
       <RepayDate>2018-08-01T00:00:00</RepayDate>
-      <Loan>50000</Loan>
-      <Percent>10</Percent>
+      <Loan>5000</Loan>
+      <Percent>0</Percent>
+      <monthly>1000</monthly>
+      <months>5</months>
     </Credit>
   </Credits>
   <Employees>
@@ -42,7 +46,20 @@
       <Price>9000</Price>
     </Product>
   </Products>
-  <Costs />
+  <Costs>
+    <Cost>
+      <Name>Издержки 1</Name>
+      <Start xsi:nil="true" />
+      <End xsi:nil="true" />
+      <MonthlyCost>10000</MonthlyCost>
+    </Cost>
+    <Cost>
+      <Name>Издержки 2</Name>
+      <Start>2018-04-01T00:00:00</Start>
+      <End>2018-07-01T00:00:00</End>
+      <MonthlyCost>5000</MonthlyCost>
+    </Cost>
+  </Costs>
   <PeriodStart>2017-12-01T00:00:00</PeriodStart>
   <PeriodEnd>2019-05-06T00:00:00</PeriodEnd>
 </Project>

@@ -21,7 +21,7 @@ namespace KursL
         {
             if(!string.IsNullOrWhiteSpace(textBox_Invest.Text))
             {
-                if (decimal.TryParse(textBox_Invest.Text.Replace(',', '.'), out buffer))
+                if (decimal.TryParse(textBox_Invest.Text.Replace('.', ','), out buffer))
                 {
                     buffer = Math.Round(buffer, 2);
                     ((MainForm)this.Owner).selectedProject.Investments = buffer;
